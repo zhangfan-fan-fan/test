@@ -1,0 +1,341 @@
+*** Using Compiler 'V6.18', folder: 'D:\keil5\core\ARM\ARMCLANG\Bin'
+Rebuild target 'stm32f407vgt6_6623'
+compiling __alg_pid.cpp...
+assembling startup_stm32f407xx.s...
+compiling stm32f4xx_hal_flash_ramfunc.c...
+../user/__drv_math.cpp(35): warning: implicit conversion loses integer precision: 'int' to 'std::uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+    *temp_address_16 = temp_address_8[0] << 8 | temp_address_8[1];
+                     ~ ~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+../user/__drv_math.cpp(31): warning: no previous prototype for function 'Math_Endian_Reverse_16' [-Wmissing-prototypes]
+void Math_Endian_Reverse_16(void *Address)
+     ^
+../user/__drv_math.cpp(31): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void Math_Endian_Reverse_16(void *Address)
+^
+static 
+../user/__drv_math.cpp(44): warning: no previous prototype for function 'Math_Endian_Reverse_16' [-Wmissing-prototypes]
+void Math_Endian_Reverse_16(void *Source, void *Destination)
+     ^
+../user/__drv_math.cpp(44): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void Math_Endian_Reverse_16(void *Source, void *Destination)
+^
+static 
+../user/__drv_math.cpp(63): warning: implicit conversion changes signedness: 'int' to 'std::uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    *temp_address_32 = temp_address_8[0] << 24 | temp_address_8[1] << 16 | temp_address_8[2] << 8 | temp_address_8[3];
+                     ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+../user/__drv_math.cpp(59): warning: no previous prototype for function 'Math_Endian_Reverse_32' [-Wmissing-prototypes]
+void Math_Endian_Reverse_32(void *Address)
+     ^
+../user/__drv_math.cpp(59): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void Math_Endian_Reverse_32(void *Address)
+^
+static 
+../user/__drv_math.cpp(72): warning: no previous prototype for function 'Math_Endian_Reverse_32' [-Wmissing-prototypes]
+void Math_Endian_Reverse_32(void *Source, void *Destination)
+     ^
+../user/__drv_math.cpp(72): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void Math_Endian_Reverse_32(void *Source, void *Destination)
+^
+static 
+../user/__drv_math.cpp(91): warning: no previous prototype for function 'Math_Sum_8' [-Wmissing-prototypes]
+uint8_t Math_Sum_8(uint8_t *Address, uint32_t Length)
+        ^
+../user/__drv_math.cpp(91): note: declare 'static' if the function is not intended to be used outside of this translation unit
+uint8_t Math_Sum_8(uint8_t *Address, uint32_t Length)
+^
+static 
+../user/__drv_math.cpp(94): warning: comparison of integers of different signs: 'int' and 'std::uint32_t' (aka 'unsigned int') [-Wsign-compare]
+    for (int i = 0; i < Length; i++)
+                    ~ ^ ~~~~~~
+../user/__drv_math.cpp(108): warning: no previous prototype for function 'Math_Sum_16' [-Wmissing-prototypes]
+uint16_t Math_Sum_16(uint16_t *Address, uint32_t Length)
+         ^
+../user/__drv_math.cpp(108): note: declare 'static' if the function is not intended to be used outside of this translation unit
+uint16_t Math_Sum_16(uint16_t *Address, uint32_t Length)
+^
+static 
+../user/__drv_math.cpp(111): warning: comparison of integers of different signs: 'int' and 'std::uint32_t' (aka 'unsigned int') [-Wsign-compare]
+    for (int i = 0; i < Length; i++)
+                    ~ ^ ~~~~~~
+../user/__drv_math.cpp(125): warning: no previous prototype for function 'Math_Sum_32' [-Wmissing-prototypes]
+uint32_t Math_Sum_32(uint32_t *Address, uint32_t Length)
+         ^
+../user/__drv_math.cpp(125): note: declare 'static' if the function is not intended to be used outside of this translation unit
+uint32_t Math_Sum_32(uint32_t *Address, uint32_t Length)
+^
+static 
+../user/__drv_math.cpp(128): warning: comparison of integers of different signs: 'int' and 'std::uint32_t' (aka 'unsigned int') [-Wsign-compare]
+    for (int i = 0; i < Length; i++)
+                    ~ ^ ~~~~~~
+12 warnings generated.
+compiling __drv_math.cpp...
+compiling stm32f4xx_hal_rcc.c...
+../user/__drv_bsp.cpp(31): warning: unused parameter 'IMU_Heater_Rate' [-Wunused-parameter]
+void BSP_Init(uint32_t Status, float IMU_Heater_Rate, float Buzzer_Rate)//Status是14 个宏按位或组合出来的开关指南，剩下两个参数是默认参数IMU 加热功率、蜂鸣器频率，此处无用//
+                                     ^
+../user/__drv_bsp.cpp(31): warning: unused parameter 'Buzzer_Rate' [-Wunused-parameter]
+void BSP_Init(uint32_t Status, float IMU_Heater_Rate, float Buzzer_Rate)//Status是14 个宏按位或组合出来的开关指南，剩下两个参数是默认参数IMU 加热功率、蜂鸣器频率，此处无用//
+                                                            ^
+2 warnings generated.
+compiling __drv_bsp.cpp...
+compiling stm32f4xx_hal_msp.c...
+../user/__drv_uart.cpp(22): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART1_Manage_Object = {0};//八个收纳盒结构体初始化
+                                                  ^
+../user/__drv_uart.cpp(23): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART2_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(24): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART3_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(25): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART4_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(26): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART5_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(27): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART6_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(28): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART7_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(29): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART8_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(156): warning: unused parameter 'Size' [-Wunused-parameter]
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
+                                                                    ^
+../user/__drv_uart.cpp(213): warning: implicit conversion loses integer precision: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+            if (crc & 0x80)  crc = (crc << 1) ^ 0x31;   // 最高位是1：左移再异或
+                                 ~ ~~~~~~~~~~~^~~~~~
+../user/__drv_uart.cpp(214): warning: implicit conversion loses integer precision: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+            else             crc =  crc << 1;           // 否则只左移
+                                 ~  ~~~~^~~~
+../user/__drv_uart.cpp(41): warning: unused variable 'last_telemetry' [-Wunused-variable]
+static uint32_t last_telemetry = 0;   // 上次发货时间，static 保证跨 while 轮次保持
+                ^
+../user/__drv_uart.cpp(42): warning: unused variable 'seq' [-Wunused-variable]
+static uint8_t  seq = 0;              // 包裹单号，从 0 开始每帧 +1
+                ^
+../user/__drv_uart.cpp(43): warning: unused variable 'csv_tx_buffer' [-Wunused-variable]
+static uint8_t  csv_tx_buffer[32];        // 发货箱子，
+                ^
+14 warnings generated.
+compiling __drv_uart.cpp...
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c(104): warning: no previous extern declaration for non-static variable 'pFlash' [-Wmissing-variable-declarations]
+FLASH_ProcessTypeDef pFlash  = {.ProcedureOnGoing = FLASH_PROC_NONE,
+                     ^
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash.c(104): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+FLASH_ProcessTypeDef pFlash  = {.ProcedureOnGoing = FLASH_PROC_NONE,
+^
+1 warning generated.
+compiling stm32f4xx_hal_flash.c...
+compiling stm32f4xx_it.c...
+compiling stm32f4xx_hal_can.c...
+compiling can.c...
+../Core/Src/usart.c(28): warning: no previous extern declaration for non-static variable 'hdma_usart2_rx' [-Wmissing-variable-declarations]
+DMA_HandleTypeDef hdma_usart2_rx;
+                  ^
+../Core/Src/usart.c(28): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+DMA_HandleTypeDef hdma_usart2_rx;
+^
+../Core/Src/usart.c(29): warning: no previous extern declaration for non-static variable 'hdma_usart2_tx' [-Wmissing-variable-declarations]
+DMA_HandleTypeDef hdma_usart2_tx;
+                  ^
+../Core/Src/usart.c(29): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+DMA_HandleTypeDef hdma_usart2_tx;
+^
+2 warnings generated.
+compiling usart.c...
+compiling tim.c...
+compiling gpio.c...
+compiling stm32f4xx_hal_gpio.c...
+compiling iwdg.c...
+../user/__drv_can.cpp(22): warning: missing field 'Callback_Function' initializer [-Wmissing-field-initializers]
+Struct_CAN_Manage_Object CAN1_Manage_Object = {0};//存句柄和打电话的新类型的结构体
+                                                ^
+../user/__drv_can.cpp(23): warning: missing field 'Callback_Function' initializer [-Wmissing-field-initializers]
+Struct_CAN_Manage_Object CAN2_Manage_Object = {0};
+                                                ^
+2 warnings generated.
+compiling __drv_can.cpp...
+compiling stm32f4xx_hal_rcc_ex.c...
+compiling dma.c...
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(268): warning: implicit conversion loses integer precision: 'uint32_t' (aka 'unsigned int') to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+    FLASH_Erase_Sector(pEraseInit->Sector, pEraseInit->VoltageRange);
+    ~~~~~~~~~~~~~~~~~~                     ~~~~~~~~~~~~^~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(310): warning: implicit conversion loses integer precision: 'uint32_t' (aka 'unsigned int') to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+    status = FLASH_OB_RDP_LevelConfig(pOBInit->RDPLevel);
+             ~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~^~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(324): warning: implicit conversion loses integer precision: 'uint32_t' (aka 'unsigned int') to 'uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+    status = FLASH_OB_BOR_LevelConfig(pOBInit->BORLevel);
+             ~~~~~~~~~~~~~~~~~~~~~~~~ ~~~~~~~~~^~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(948): warning: unused parameter 'Banks' [-Wunused-parameter]
+static void FLASH_MassErase(uint8_t VoltageRange, uint32_t Banks)
+                                                           ^
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(1027): warning: unused parameter 'Banks' [-Wunused-parameter]
+static HAL_StatusTypeDef FLASH_OB_EnableWRP(uint32_t WRPSector, uint32_t Banks)
+                                                                         ^
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_flash_ex.c(1063): warning: unused parameter 'Banks' [-Wunused-parameter]
+static HAL_StatusTypeDef FLASH_OB_DisableWRP(uint32_t WRPSector, uint32_t Banks)
+                                                                          ^
+6 warnings generated.
+compiling stm32f4xx_hal_flash_ex.c...
+../user/main_6623.cpp(21): warning: In file included from...../user/__dvc_motor.h(168): warning: extra ';' inside a class [-Wextra-semi]
+;
+^
+../user/main_6623.cpp(31): warning: no previous extern declaration for non-static variable 'Motor_1' [-Wmissing-variable-declarations]
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+                   ^
+../user/main_6623.cpp(31): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+^
+../user/main_6623.cpp(31): warning: declaration requires a global constructor [-Wglobal-constructors]
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+                   ^~~~~~~
+../user/main_6623.cpp(32): warning: no previous extern declaration for non-static variable 'Serialplot' [-Wmissing-variable-declarations]
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+                 ^
+../user/main_6623.cpp(32): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+^
+../user/main_6623.cpp(32): warning: declaration requires a global constructor [-Wglobal-constructors]
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+                 ^~~~~~~~~~
+../user/main_6623.cpp(35): warning: no previous extern declaration for non-static variable 'Serialplot_Dict' [-Wmissing-variable-declarations]
+char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega" };
+     ^
+../user/main_6623.cpp(35): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega" };
+^
+../user/main_6623.cpp(36): warning: no previous extern declaration for non-static variable 'UART2_Rx_Buffer' [-Wmissing-variable-declarations]
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+        ^
+../user/main_6623.cpp(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+^
+../user/main_6623.cpp(37): warning: no previous extern declaration for non-static variable 'Target_Angle' [-Wmissing-variable-declarations]
+float Target_Angle = 0.0f;           // 目标角度（必须全局！Set_Data 传的是地址）
+      ^
+../user/main_6623.cpp(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float Target_Angle = 0.0f;           // 目标角度（必须全局！Set_Data 传的是地址）
+^
+../user/main_6623.cpp(38): warning: no previous extern declaration for non-static variable 'i' [-Wmissing-variable-declarations]
+int16_t i;
+        ^
+../user/main_6623.cpp(38): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+int16_t i;
+^
+../user/main_6623.cpp(87): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 0:  Motor_1.PID_Angle.Set_K_P(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(88): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 1:  Motor_1.PID_Omega.Set_K_P(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(89): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 2:  Motor_1.PID_Angle.Set_K_I(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(90): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 3:  Motor_1.PID_Omega.Set_K_I(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(59): warning: unused parameter 'Length' [-Wunused-parameter]
+void UART2_Rx_Callback(uint8_t *Buffer, uint16_t Length)
+                                                 ^
+../user/main_6623.cpp(197): warning: missing field 'HSEState' initializer [-Wmissing-field-initializers]
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+                                             ^
+../user/main_6623.cpp(198): warning: missing field 'SYSCLKSource' initializer [-Wmissing-field-initializers]
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+                                             ^
+16 warnings generated.
+compiling main_6623.cpp...
+../user/__dvc_serialplot.cpp(123): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+    va_start(data_ptr, Number);//初始化游标，指向第一个可变参数（Number 是最后一个固定参数，可变参数从它后面开始）
+                       ^
+../user/__dvc_serialplot.cpp(120): note: parameter of type 'std::uint8_t' (aka 'unsigned char') is declared here
+void Class_Serialplot::Set_Data(uint8_t Number, ...)
+                                        ^
+../user/__dvc_serialplot.cpp(155): warning: implicit conversion loses integer precision: 'int' to 'std::int8_t' (aka 'signed char') [-Wimplicit-int-conversion]
+            Variable_Index = i;//记下行号也就是第几个
+                           ~ ^
+../user/__dvc_serialplot.cpp(156): warning: implicit conversion loses integer precision: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+            return (flag + 1);
+            ~~~~~~  ~~~~~^~~
+../user/__dvc_serialplot.cpp(160): warning: implicit conversion loses integer precision: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+    return (flag + 1);//这个flag+1再传给下面的Judge_Variable_Value用来接着读取后面的值
+    ~~~~~~  ~~~~~^~~
+../user/__dvc_serialplot.cpp(257): warning: unused parameter 'Rx_Data' [-Wunused-parameter]
+void Class_Serialplot::UART_RxCpltCallback(uint8_t *Rx_Data)//把查字典中的名字和名字对应的数值进行打包
+                                                    ^
+5 warnings generated.
+compiling __dvc_serialplot.cpp...
+../user/__dvc_motor.cpp(14): warning: In file included from...../user\__dvc_motor.h(168): warning: extra ';' inside a class [-Wextra-semi]
+;
+^
+../user/__dvc_motor.cpp(48): warning: enumeration value 'CAN_Motor_ID_UNDEFINED' not handled in switch [-Wswitch]
+        switch (__CAN_ID)
+                ^~~~~~~~
+../user/__dvc_motor.cpp(130): warning: implicit conversion changes signedness: 'std::int32_t' (aka 'int') to 'std::uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    Encoder_Offset = __Encoder_Offset;//编码器偏移
+                   ~ ^~~~~~~~~~~~~~~~
+../user/__dvc_motor.cpp(144): warning: implicit conversion changes signedness: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wsign-conversion]
+    CAN_Tx_Data[0] = (int16_t)Out >> 8;//取高八位高字节进[0]
+                   ~ ~~~~~~~~~~~~~^~~~
+../user/__dvc_motor.cpp(145): warning: implicit conversion loses integer precision: 'std::int16_t' (aka 'short') to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+    CAN_Tx_Data[1] = (int16_t)Out;//隐藏式截断，只留低八位
+                   ~ ^~~~~~~~~~~~
+../user/__dvc_motor.cpp(301): warning: implicit conversion loses integer precision: 'int' to 'std::uint16_t' (aka 'unsigned short') [-Wimplicit-int-conversion]
+    Rx_Encoder = (Rx_Data[0] << 8) | Rx_Data[1];//机械角度，唯一控制用得上的反馈
+               ~ ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+../user/__dvc_motor.cpp(302): warning: implicit conversion loses integer precision: 'int' to 'std::int16_t' (aka 'short') [-Wimplicit-int-conversion]
+    Rx_Torque = (Rx_Data[2] << 8) | Rx_Data[3];//实际转矩电流
+              ~ ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~
+../user/__dvc_motor.cpp(305): warning: implicit conversion changes signedness: 'int' to 'std::int16_t' (aka 'short') [-Wsign-conversion]
+    delta_encoder = Rx_Encoder - Pre_Encoder;
+                  ~ ~~~~~~~~~~~^~~~~~~~~~~~~
+../user/__dvc_motor.cpp(323): warning: implicit conversion changes signedness: 'unsigned int' to 'std::int32_t' (aka 'int') [-Wsign-conversion]
+    Total_Encoder = Total_Round * Encoder_Num_Per_Round + Rx_Encoder + Encoder_Offset;
+                  ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+../user/__dvc_motor.cpp(323): warning: implicit conversion changes signedness: 'int' to 'unsigned int' [-Wsign-conversion]
+    Total_Encoder = Total_Round * Encoder_Num_Per_Round + Rx_Encoder + Encoder_Offset;
+                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~ ~
+../user/__dvc_motor.cpp(388): warning: enumeration value 'Control_Method_TORQUE' not explicitly handled in switch [-Wswitch-enum]
+    switch (Control_Method)
+            ^~~~~~~~~~~~~~
+11 warnings generated.
+compiling __dvc_motor.cpp...
+compiling stm32f4xx_hal_pwr.c...
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c(289): warning: cast from function call of type 'uint32_t' (aka 'unsigned int') to non-matching type 'DMA_Base_Registers *' [-Wbad-function-cast]
+  regs = (DMA_Base_Registers *)DMA_CalcBaseAndBitshift(hdma);
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c(351): warning: cast from function call of type 'uint32_t' (aka 'unsigned int') to non-matching type 'DMA_Base_Registers *' [-Wbad-function-cast]
+  regs = (DMA_Base_Registers *)DMA_CalcBaseAndBitshift(hdma);
+                               ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c(977): warning: enumeration value 'HAL_DMA_XFER_ALL_CB_ID' not explicitly handled in switch [-Wswitch-enum]
+    switch (CallbackID)
+            ^~~~~~~~~~
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_dma.c(1073): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+    default:
+    ^
+4 warnings generated.
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_dma_ex.c...
+compiling stm32f4xx_hal_cortex.c...
+../Drivers/STM32F4xx_HAL_Driver/Src/stm32f4xx_hal_exti.c(379): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+    default:
+    ^
+1 warning generated.
+compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal_pwr_ex.c...
+compiling stm32f4xx_hal.c...
+compiling stm32f4xx_hal_iwdg.c...
+compiling system_stm32f4xx.c...
+compiling stm32f4xx_hal_tim_ex.c...
+compiling stm32f4xx_hal_uart.c...
+compiling stm32f4xx_hal_tim.c...
+linking...
+Program Size: Code=30576 RO-data=604 RW-data=412 ZI-data=4204  
+FromELF: creating hex file...
+"stm32f407vgt6_6623\stm32f407vgt6_6623.axf" - 0 Error(s), 76 Warning(s).
+Build Time Elapsed:  00:00:07

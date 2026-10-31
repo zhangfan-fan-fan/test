@@ -1,0 +1,76 @@
+*** Using Compiler 'V6.18', folder: 'D:\keil5\core\ARM\ARMCLANG\Bin'
+Build target 'stm32f407vgt6_6623'
+../user/main_6623.cpp(32): warning: no previous extern declaration for non-static variable 'Motor_1' [-Wmissing-variable-declarations]
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+                   ^
+../user/main_6623.cpp(32): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+^
+../user/main_6623.cpp(32): warning: declaration requires a global constructor [-Wglobal-constructors]
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+                   ^~~~~~~
+../user/main_6623.cpp(33): warning: no previous extern declaration for non-static variable 'Serialplot' [-Wmissing-variable-declarations]
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+                 ^
+../user/main_6623.cpp(33): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+^
+../user/main_6623.cpp(33): warning: declaration requires a global constructor [-Wglobal-constructors]
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+                 ^~~~~~~~~~
+../user/main_6623.cpp(36): warning: no previous extern declaration for non-static variable 'Serialplot_Dict' [-Wmissing-variable-declarations]
+char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega", "kf_angle", "kf_omega" };
+     ^
+../user/main_6623.cpp(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega", "kf_angle", "kf_omega" };
+^
+../user/main_6623.cpp(37): warning: no previous extern declaration for non-static variable 'UART2_Rx_Buffer' [-Wmissing-variable-declarations]
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+        ^
+../user/main_6623.cpp(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+^
+../user/main_6623.cpp(128): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+    default:
+    ^
+../user/main_6623.cpp(76): warning: no previous prototype for function 'Test_Mode_Apply' [-Wmissing-prototypes]
+void Test_Mode_Apply(Enum_Test_Mode mode)
+     ^
+../user/main_6623.cpp(76): note: declare 'static' if the function is not intended to be used outside of this translation unit
+void Test_Mode_Apply(Enum_Test_Mode mode)
+^
+static 
+../user/main_6623.cpp(184): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 0:  Motor_1.PID_Angle.Set_K_P(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(185): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 1:  Motor_1.PID_Omega.Set_K_P(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(186): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 2:  Motor_1.PID_Angle.Set_K_I(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(187): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 3:  Motor_1.PID_Omega.Set_K_I(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(188): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 4:  Motor_1.PID_Angle.Set_K_F(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(189): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 5:  Motor_1.PID_Omega.Set_K_F(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(211): warning: enumeration value 'Test_Mode_STOP' not explicitly handled in switch [-Wswitch-enum]
+        switch (Test_Mode)
+                ^~~~~~~~~
+../user/main_6623.cpp(337): warning: missing field 'HSEState' initializer [-Wmissing-field-initializers]
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+                                             ^
+../user/main_6623.cpp(338): warning: missing field 'SYSCLKSource' initializer [-Wmissing-field-initializers]
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+                                             ^
+17 warnings generated.
+compiling main_6623.cpp...
+linking...
+Program Size: Code=29012 RO-data=492 RW-data=612 ZI-data=4308  
+FromELF: creating hex file...
+"stm32f407vgt6_6623\stm32f407vgt6_6623.axf" - 0 Error(s), 17 Warning(s).
+Build Time Elapsed:  00:00:01

@@ -1,0 +1,275 @@
+/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2026 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "can.h"
+#include "dma.h"
+#include "iwdg.h"
+#include "tim.h"
+#include "usart.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include <string.h>
+#include "__drv_can.h"
+#include "__drv_uart.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+uint32_t can_tx_count = 0;   // 真正发进邮箱的帧数（HAL_OK 才算�?
+uint32_t can_rx_count = 0;   // 收回来多少帧
+uint8_t  can_rx_data[8];     // �?近收到的�?帧内�?
+uint32_t can_error    = 0;   // HAL_CAN_GetError 的�?�，诊断用，正常应为 0
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+void CAN_User_Rx_Callback(Struct_CAN_Rx_Buffer *Rx_Buffer);
+void VOFA_Send(void);
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_DMA_Init();
+  MX_CAN1_Init();
+  MX_USART2_UART_Init();
+  MX_TIM6_Init();
+  MX_IWDG_Init();
+  /* USER CODE BEGIN 2 */
+  CAN_Filter_Mask_Config(&hcan1, CAN_FILTER(0) | CAN_FIFO_0 | CAN_STDID | CAN_DATA_TYPE, 0, 0);
+  CAN_Init(&hcan1, CAN_User_Rx_Callback);
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+uint32_t last_can = 0;
+uint32_t last_tel = 0;
+while (1)
+{
+  uint32_t now = HAL_GetTick();
+
+  // �?100ms发一�?: ID=0x123, [0]=帧号, [1]~[7]=0x56~0x5C 指纹
+  if (now - last_can >= 100)
+  {
+    last_can = now;
+    uint8_t tx[8];
+    tx[0] = (uint8_t)can_tx_count;
+    for (int i = 1; i < 8; i++) tx[i] = (uint8_t)(0x55 + i);
+
+    // 只有 HAL_CAN_AddTxMessage 真的返回 HAL_OK（帧进了邮箱）才计数
+    if (CAN_Send_Data(&hcan1, 0x123, tx, 8) == HAL_OK)
+    {
+      can_tx_count++;
+    }
+    can_error = HAL_CAN_GetError(&hcan1);   // 记录 CAN 的错误标志位
+  }
+
+  // �?10ms把统计打包成遥测帧发给电�?
+  if (now - last_tel >= 10)
+  {
+    last_tel = now;
+     VOFA_Send();
+  }
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Configure the main internal regulator output voltage
+  */
+  __HAL_RCC_PWR_CLK_ENABLE();
+  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
+  RCC_OscInitStruct.PLL.PLLM = 8;
+  RCC_OscInitStruct.PLL.PLLN = 168;
+  RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+  RCC_OscInitStruct.PLL.PLLQ = 4;
+  if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV4;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV2;
+
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_5) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+void CAN_User_Rx_Callback(Struct_CAN_Rx_Buffer *Rx_Buffer)
+{
+  can_rx_count++;
+  for (int i = 0; i < 8; i++)
+  {
+    can_rx_data[i] = Rx_Buffer->Data[i];
+  }
+}
+
+// 把一�? float 按小端拆�? 4 个字节，写到 dst 指向的位�?
+static void put_float(uint8_t *dst, float v)
+{
+  uint32_t bits;
+  memcpy(&bits, &v, 4);            // 原样�? 4 字节，不做数值换�?
+
+  dst[0] = (uint8_t)(bits >> 0);   // �?低字节在�? = 小端
+  dst[1] = (uint8_t)(bits >> 8);
+  dst[2] = (uint8_t)(bits >> 16);
+  dst[3] = (uint8_t)(bits >> 24);
+}
+
+/**
+  * @brief �? VOFA+ 发一�? JustFloat�?4 �? float + 4 字节帧尾
+  */
+void VOFA_Send(void)
+{
+  static uint8_t frame[20];    // 必须 static：DMA 在后台读它，放栈上会被冲�?
+
+  put_float(&frame[0],  (float)can_tx_count);                   // 通道 0：真正发进邮箱的帧数
+  put_float(&frame[4],  (float)can_rx_count);                   // 通道 1：收回帧�?
+  put_float(&frame[8],  (float)(can_tx_count - can_rx_count));  // 通道 2：丢帧数
+  put_float(&frame[12], (float)can_error);                      // 通道 3：CAN 错误码，正常�? 0
+
+  frame[16] = 0x00;            // 帧尾 = float �? +∞，VOFA+ 靠它切帧
+  frame[17] = 0x00;
+  frame[18] = 0x80;
+  frame[19] = 0x7F;
+
+  // 用阻塞发送�?�不�? DMA�?20 字节 @115200 只要 1.7ms�?10ms 周期完全够�??
+  // DMA �?旦某次传输完成中断丢了，huart2.gState 会永远卡�? BUSY�?
+  // 之后每一帧都静默失败，串口就此彻底哑�? —�?? 这是之前"没动�?"的最大嫌疑�??
+  HAL_UART_Transmit(&huart2, frame, 20, 10);
+}
+
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+		
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */

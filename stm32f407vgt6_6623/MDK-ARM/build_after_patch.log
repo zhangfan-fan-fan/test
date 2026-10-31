@@ -1,0 +1,131 @@
+*** Using Compiler 'V6.18', folder: 'D:\keil5\core\ARM\ARMCLANG\Bin'
+Build target 'stm32f407vgt6_6623'
+../user/__drv_can.cpp(22): warning: missing field 'Callback_Function' initializer [-Wmissing-field-initializers]
+Struct_CAN_Manage_Object CAN1_Manage_Object = {0};//存句柄和打电话的新类型的结构体
+                                                ^
+../user/__drv_can.cpp(23): warning: missing field 'Callback_Function' initializer [-Wmissing-field-initializers]
+Struct_CAN_Manage_Object CAN2_Manage_Object = {0};
+                                                ^
+2 warnings generated.
+compiling __drv_can.cpp...
+../user/__drv_uart.cpp(22): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART1_Manage_Object = {0};//八个收纳盒结构体初始化
+                                                  ^
+../user/__drv_uart.cpp(23): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART2_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(24): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART3_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(25): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART4_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(26): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART5_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(27): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART6_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(28): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART7_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(29): warning: missing field 'Rx_Buffer' initializer [-Wmissing-field-initializers]
+Struct_UART_Manage_Object UART8_Manage_Object = {0};
+                                                  ^
+../user/__drv_uart.cpp(213): warning: implicit conversion loses integer precision: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+            if (crc & 0x80)  crc = (crc << 1) ^ 0x31;   // 最高位是1：左移再异或
+                                 ~ ~~~~~~~~~~~^~~~~~
+../user/__drv_uart.cpp(214): warning: implicit conversion loses integer precision: 'int' to 'std::uint8_t' (aka 'unsigned char') [-Wimplicit-int-conversion]
+            else             crc =  crc << 1;           // 否则只左移
+                                 ~  ~~~~^~~~
+../user/__drv_uart.cpp(41): warning: unused variable 'last_telemetry' [-Wunused-variable]
+static uint32_t last_telemetry = 0;   // 上次发货时间，static 保证跨 while 轮次保持
+                ^
+../user/__drv_uart.cpp(42): warning: unused variable 'seq' [-Wunused-variable]
+static uint8_t  seq = 0;              // 包裹单号，从 0 开始每帧 +1
+                ^
+../user/__drv_uart.cpp(43): warning: unused variable 'csv_tx_buffer' [-Wunused-variable]
+static uint8_t  csv_tx_buffer[32];        // 发货箱子，
+                ^
+13 warnings generated.
+compiling __drv_uart.cpp...
+../user/__dvc_serialplot.cpp(125): warning: passing an object that undergoes default argument promotion to 'va_start' has undefined behavior [-Wvarargs]
+    va_start(data_ptr, Number);//初始化游标，指向第一个可变参数（Number 是最后一个固定参数，可变参数从它后面开始）
+                       ^
+../user/__dvc_serialplot.cpp(122): note: parameter of type 'std::uint8_t' (aka 'unsigned char') is declared here
+void Class_Serialplot::Set_Data(uint8_t Number, ...)
+                                        ^
+1 warning generated.
+compiling __dvc_serialplot.cpp...
+../user/__dvc_motor.cpp(48): warning: enumeration value 'CAN_Motor_ID_UNDEFINED' not handled in switch [-Wswitch]
+        switch (__CAN_ID)
+                ^~~~~~~~
+../user/__dvc_motor.cpp(130): warning: implicit conversion changes signedness: 'std::int32_t' (aka 'int') to 'std::uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    Encoder_Offset = __Encoder_Offset;//编码器偏移
+                   ~ ^~~~~~~~~~~~~~~~
+../user/__dvc_motor.cpp(443): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+    default:
+    ^
+3 warnings generated.
+compiling __dvc_motor.cpp...
+../user/main_6623.cpp(31): warning: no previous extern declaration for non-static variable 'Motor_1' [-Wmissing-variable-declarations]
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+                   ^
+../user/main_6623.cpp(31): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+^
+../user/main_6623.cpp(31): warning: declaration requires a global constructor [-Wglobal-constructors]
+Class_Motor_GM6623 Motor_1;          // dvc_motor：电机对象，内含 2 个 PID（角度环 + 速度环）
+                   ^~~~~~~
+../user/main_6623.cpp(32): warning: no previous extern declaration for non-static variable 'Serialplot' [-Wmissing-variable-declarations]
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+                 ^
+../user/main_6623.cpp(32): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+^
+../user/main_6623.cpp(32): warning: declaration requires a global constructor [-Wglobal-constructors]
+Class_Serialplot Serialplot;         // dvc_serialplot：串口绘图 + 调参对象
+                 ^~~~~~~~~~
+../user/main_6623.cpp(35): warning: no previous extern declaration for non-static variable 'Serialplot_Dict' [-Wmissing-variable-declarations]
+char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega" };
+     ^
+../user/main_6623.cpp(35): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega" };
+^
+../user/main_6623.cpp(36): warning: no previous extern declaration for non-static variable 'UART2_Rx_Buffer' [-Wmissing-variable-declarations]
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+        ^
+../user/main_6623.cpp(36): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+^
+../user/main_6623.cpp(37): warning: no previous extern declaration for non-static variable 'Target_Angle' [-Wmissing-variable-declarations]
+float Target_Angle = 0.0f;           // 目标角度（必须全局！Set_Data 传的是地址）
+      ^
+../user/main_6623.cpp(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
+float Target_Angle = 0.0f;           // 目标角度（必须全局！Set_Data 传的是地址）
+^
+../user/main_6623.cpp(91): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 0:  Motor_1.PID_Angle.Set_K_P(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(92): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 1:  Motor_1.PID_Omega.Set_K_P(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(93): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 2:  Motor_1.PID_Angle.Set_K_I(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(94): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+    case 3:  Motor_1.PID_Omega.Set_K_I(Serialplot.Get_Variable_Value());  break;
+                               ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+../user/main_6623.cpp(214): warning: missing field 'HSEState' initializer [-Wmissing-field-initializers]
+    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+                                             ^
+../user/main_6623.cpp(215): warning: missing field 'SYSCLKSource' initializer [-Wmissing-field-initializers]
+    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+                                             ^
+13 warnings generated.
+compiling main_6623.cpp...
+linking...
+Program Size: Code=26304 RO-data=476 RW-data=412 ZI-data=4228  
+FromELF: creating hex file...
+"stm32f407vgt6_6623\stm32f407vgt6_6623.axf" - 0 Error(s), 32 Warning(s).
+Build Time Elapsed:  00:00:03

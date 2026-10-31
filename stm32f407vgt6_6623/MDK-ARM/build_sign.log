@@ -1,0 +1,18 @@
+*** Using Compiler 'V6.18', folder: 'D:\keil5\core\ARM\ARMCLANG\Bin'
+Build target 'stm32f407vgt6_6623'
+../user/__dvc_motor.cpp(48): warning: enumeration value 'CAN_Motor_ID_UNDEFINED' not handled in switch [-Wswitch]
+        switch (__CAN_ID)
+                ^~~~~~~~
+../user/__dvc_motor.cpp(130): warning: implicit conversion changes signedness: 'std::int32_t' (aka 'int') to 'std::uint32_t' (aka 'unsigned int') [-Wsign-conversion]
+    Encoder_Offset = __Encoder_Offset;//编码器偏移
+                   ~ ^~~~~~~~~~~~~~~~
+../user/__dvc_motor.cpp(465): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+    default:
+    ^
+3 warnings generated.
+compiling __dvc_motor.cpp...
+linking...
+Program Size: Code=28508 RO-data=492 RW-data=412 ZI-data=4244  
+FromELF: creating hex file...
+"stm32f407vgt6_6623\stm32f407vgt6_6623.axf" - 0 Error(s), 3 Warning(s).
+Build Time Elapsed:  00:00:02
