@@ -52,12 +52,12 @@ char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega", 
 char Serialplot_Dict[][100] = { "kp_angle", "kp_omega", "ki_angle", "ki_omega", "kf_angle", "kf_omega" };
 ^
 ../user/main_6623.cpp(37): warning: no previous extern declaration for non-static variable 'UART2_Rx_Buffer' [-Wmissing-variable-declarations]
-uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架
         ^
 ../user/main_6623.cpp(37): note: declare 'static' if the variable is not intended to be used outside of this translation unit
-uint8_t UART2_Rx_Buffer[64];         // 串口收货架（drv_uart 的收纳盒要登记它）
+uint8_t UART2_Rx_Buffer[64];         // 串口收货架
 ^
-../user/main_6623.cpp(135): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
+../user/main_6623.cpp(136): warning: default label in switch which covers all enumeration values [-Wcovered-switch-default]
     default:
     ^
 ../user/main_6623.cpp(76): warning: no previous prototype for function 'Test_Mode_Apply' [-Wmissing-prototypes]
@@ -67,37 +67,37 @@ void Test_Mode_Apply(Enum_Test_Mode mode)
 void Test_Mode_Apply(Enum_Test_Mode mode)
 ^
 static 
-../user/main_6623.cpp(191): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+../user/main_6623.cpp(192): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     case 0:  Motor_1.PID_Angle.Set_K_P(Serialplot.Get_Variable_Value());  break;
                                ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-../user/main_6623.cpp(192): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+../user/main_6623.cpp(193): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     case 1:  Motor_1.PID_Omega.Set_K_P(Serialplot.Get_Variable_Value());  break;
                                ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-../user/main_6623.cpp(193): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+../user/main_6623.cpp(194): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     case 2:  Motor_1.PID_Angle.Set_K_I(Serialplot.Get_Variable_Value());  break;
                                ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-../user/main_6623.cpp(194): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+../user/main_6623.cpp(195): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     case 3:  Motor_1.PID_Omega.Set_K_I(Serialplot.Get_Variable_Value());  break;
                                ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-../user/main_6623.cpp(195): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+../user/main_6623.cpp(196): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     case 4:  Motor_1.PID_Angle.Set_K_F(Serialplot.Get_Variable_Value());  break;
                                ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-../user/main_6623.cpp(196): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
+../user/main_6623.cpp(197): warning: implicit conversion loses floating-point precision: 'double' to 'float' [-Wimplicit-float-conversion]
     case 5:  Motor_1.PID_Omega.Set_K_F(Serialplot.Get_Variable_Value());  break;
                                ~~~~~~~ ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
-../user/main_6623.cpp(218): warning: enumeration value 'Test_Mode_STOP' not explicitly handled in switch [-Wswitch-enum]
+../user/main_6623.cpp(219): warning: enumeration value 'Test_Mode_STOP' not explicitly handled in switch [-Wswitch-enum]
         switch (Test_Mode)
                 ^~~~~~~~~
-../user/main_6623.cpp(344): warning: missing field 'HSEState' initializer [-Wmissing-field-initializers]
+../user/main_6623.cpp(345): warning: missing field 'HSEState' initializer [-Wmissing-field-initializers]
     RCC_OscInitTypeDef RCC_OscInitStruct = {0};
                                              ^
-../user/main_6623.cpp(345): warning: missing field 'SYSCLKSource' initializer [-Wmissing-field-initializers]
+../user/main_6623.cpp(346): warning: missing field 'SYSCLKSource' initializer [-Wmissing-field-initializers]
     RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
                                              ^
 17 warnings generated.
 compiling main_6623.cpp...
 linking...
-Program Size: Code=29428 RO-data=492 RW-data=612 ZI-data=4316  
+Program Size: Code=28888 RO-data=492 RW-data=612 ZI-data=3540  
 FromELF: creating hex file...
 "stm32f407vgt6_6623\stm32f407vgt6_6623.axf" - 0 Error(s), 17 Warning(s).
 
@@ -122,7 +122,7 @@ Package Vendor: Keil
 
    * Component: ARM::CMSIS:CORE:5.6.0
       Include file:  CMSIS/Core/Include/tz_context.h
-Build Time Elapsed:  00:00:01
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

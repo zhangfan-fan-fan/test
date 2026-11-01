@@ -79,7 +79,7 @@ void Uart_Init(UART_HandleTypeDef *huart, uint8_t *Rx_Buffer, uint16_t Rx_Buffer
         UART3_Manage_Object.UART_Handler = huart;
         UART3_Manage_Object.Callback_Function = Callback_Function;
     }
-#endif
+
     HAL_UARTEx_ReceiveToIdle_DMA(huart, Rx_Buffer, Rx_Buffer_Size);
     /*中断报信，dma搬运搬到线上空闲
     线上对面发来了4个字节，DMA把字节搬到Rx_Buffer里面，等空闲的时间大于等于1字节就算线闲下来了    

@@ -150,8 +150,6 @@ protected:
     //最大速度, 需根据不同负载测量后赋值, 也就开环输出用得到
     float Omega_Max = 320.0f * RPM_TO_RADPS;
     //串级外环的梯形速度限制（只用于 Control_Method_ANGLE）
-    float Angle_Omega_Limit = 10.0f;    //rad/s, 匀速段上限
-    float Angle_Decel = 400.0f;        //rad/s², 接近目标时的减速度（超过电机上限，实际会被电流限幅）
 
     //常量
 

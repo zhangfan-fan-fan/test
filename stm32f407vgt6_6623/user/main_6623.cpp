@@ -117,8 +117,8 @@ void Test_Mode_Apply(Enum_Test_Mode mode)
     case Test_Mode_CASCADE:
         // 串级：角度环输出速度目标（rad/s），速度环输出电流（counts）
         Motor_1.Set_Control_Method(Control_Method_ANGLE);
-        Motor_1.PID_Angle.Init(200.0f, 0.0f, 0.0f, 0.0f, 0.0f, 220.0f, 0.001f);
-        Motor_1.PID_Omega.Init(70.0f,  300.0f, 0.0f, 0.0f, 5000.0f, TEST_OUT_LIMIT, 0.001f);
+        Motor_1.PID_Angle.Init(30.0f, 0.0f, 0.0f, 0.0f,  0.0f, 5.0f, 0.001f);//Out_Max=20 rad/s≈191rpm，去掉梯形后这是唯一速度上限
+        Motor_1.PID_Omega.Init(100.0f,  1200.0f, 1.1f, 0.0f, 2000.0f, TEST_OUT_LIMIT, 0.001f);//70——200
         Motor_1.PID_Angle.Set_K_F(0.0f);
         System_Status = System_Status_POSITION;
         break;
@@ -127,7 +127,7 @@ void Test_Mode_Apply(Enum_Test_Mode mode)
     case Test_Mode_SINE:
         // 正弦：串级 速度前馈
         Motor_1.Set_Control_Method(Control_Method_ANGLE);
-        Motor_1.PID_Angle.Init(12.0f, 0.0f, 0.0f, 0.0f, 0.0f, 10.0f, 0.001f);
+        Motor_1.PID_Angle.Init(12.0f, 0.0f, 0.0f, 0.0f, 0.0f, 5.0f, 0.001f);
         Motor_1.PID_Omega.Init(600.0f, 20.0f, 0.0f, 0.0f, 5000.0f, TEST_OUT_LIMIT, 0.001f);
         Motor_1.PID_Angle.Set_K_F(TEST_KF_SINE);
         System_Status = System_Status_POSITION;
@@ -229,9 +229,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
         case Test_Mode_ANGLE_ONLY:
         case Test_Mode_CASCADE:
             if      (Test_Tick <  1000) Motor_1.Set_Target_Angle(0.0f);
-            else if (Test_Tick <  2500) Motor_1.Set_Target_Angle(PI / 2.0f);
-            else if (Test_Tick <  4000) Motor_1.Set_Target_Angle(0.0f);
-            else if (Test_Tick < 5500) Motor_1.Set_Target_Angle(-PI / 2.0f);
+            else if (Test_Tick <  3000) Motor_1.Set_Target_Angle(PI );
+            else if (Test_Tick <  5000) Motor_1.Set_Target_Angle(0.0f);
+            else if (Test_Tick < 7000) Motor_1.Set_Target_Angle(-PI );
             else                        Test_Tick = 0;
             break;
 

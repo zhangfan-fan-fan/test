@@ -468,16 +468,8 @@ void Class_Motor_GM6623::TIM_PID_PeriodElapsedCallback()
         PID_Angle.Set_Now(Now_Angle);
         PID_Angle.TIM_Adjust_PeriodElapsedCallback();
 
-        Target_Omega = PID_Angle.Get_Out();
-
-        // 梯形速度限制：误差大时恒速 Angle_Omega_Limit，接近目标按 v=sqrt(2*a*e) 匀减速
-        float angle_err = Target_Angle - Now_Angle;
-        float v_prof = sqrtf(2.0f * Angle_Decel * Math_Abs(angle_err));
-        float v_lim = (v_prof < Angle_Omega_Limit) ? v_prof : Angle_Omega_Limit;
-        if (Target_Omega >  v_lim) { Target_Omega =  v_lim; }
-        if (Target_Omega < -v_lim) { Target_Omega = -v_lim; }
-
-        Target_Omega_RPM = Target_Omega * (60.0f / (2.0f * PI));//串级时内环目标是角度环输出，rpm 显示同步
+        Target_Omega     = PID_Angle.Get_Out();
+        Target_Omega_RPM = Target_Omega * (60.0f / (2.0f * PI));
 
         PID_Omega.Set_Target(Target_Omega);
         PID_Omega.Set_Now(Now_Omega);
